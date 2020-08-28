@@ -22,6 +22,3 @@ jobs:
       - name: Tests
         run:
           flutter test
-      - name: Compile
-        run: |
-          flutter build aot

@@ -1,0 +1,4 @@
+enum BuildEnvironment {
+  dev,
+  prod,
+}

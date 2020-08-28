@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-
-void main() => runApp(MyApp());
+import 'package:freebox/configs/app_config.dart';
+import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -11,7 +11,9 @@ class MyApp extends StatelessWidget {
           title: Text('Freebox'),
         ),
         body: Center(
-          child: Text('Hello World'),
+          child: Text(
+            context.watch<AppConfig>().buildEnvironment.toString(),
+          ),
         ),
       ),
     );
