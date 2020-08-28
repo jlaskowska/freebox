@@ -1,18 +1,9 @@
-import 'package:flutter/material.dart';
 import 'package:freebox/enums/build_environment.dart';
 
 class AppConfig {
-  BuildEnvironment buildEnvironment;
+  final BuildEnvironment buildEnvironment;
 
-  AppConfig({
-    @required this.buildEnvironment,
-  });
+  const AppConfig.dev() : buildEnvironment = BuildEnvironment.dev;
 
-  AppConfig.dev() {
-    buildEnvironment = BuildEnvironment.dev;
-  }
-
-  AppConfig.prod() {
-    buildEnvironment = BuildEnvironment.prod;
-  }
+  const AppConfig.prod() : buildEnvironment = BuildEnvironment.prod;
 }
