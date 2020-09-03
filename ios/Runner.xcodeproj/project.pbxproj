@@ -168,8 +168,8 @@
 			buildConfigurationList = 97C147051CF9000F007C117D /* Build configuration list for PBXNativeTarget "Runner" */;
 			buildPhases = (
 				ED6E8688965734C571587C5B /* [CP] Check Pods Manifest.lock */,
-				9740EEB61CF901F6004384FC /* Run Script */,
 				620FBD3A24FA65E900DFB714 /* Firebase Setup */,
+				9740EEB61CF901F6004384FC /* Run Script */,
 				97C146EA1CF9000F007C117D /* Sources */,
 				97C146EB1CF9000F007C117D /* Frameworks */,
 				97C146EC1CF9000F007C117D /* Resources */,
@@ -281,7 +281,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if [ \"${CONFIGURATION}\" == \"Debug-prod\" ] || [ \"${CONFIGURATION}\" == \"Release-prod\" ] || [ \"${CONFIGURATION}\" == \"Release\" ]; then\ncp -r \"${PROJECT_DIR}/Runner/Firebase/prod/GoogleService-Info.plist\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\necho \"Production plist copied\"\n\nelif [ \"${CONFIGURATION}\" == \"Debug-dev\" ] || [ \"${CONFIGURATION}\" == \"Release-dev\" ] || [ \"${CONFIGURATION}\" == \"Debug\" ]; then\n\ncp -r \"${PROJECT_DIR}/Runner/Firebase/dev/GoogleService-Info.plist\" \"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n\necho \"Development plist copied\"\nfi\n";
+			shellScript = "# determine flavor\nflavor=\"dev\"\nif [ \"${CONFIGURATION}\" == \"Debug-prod\" ] || [ \"${CONFIGURATION}\" == \"Release-prod\" ] || [ \"${CONFIGURATION}\" == \"Release\" ]; then\n    flavor=\"prod\"\nfi\n\n# ensure GoogleService-Info.plist for flavor exists\nGOOGLESERVICE_FLAVOR=${PROJECT_DIR}/Runner/Firebase/${flavor}/GoogleService-Info.plist\nif [ ! -f $GOOGLESERVICE_FLAVOR ]; then\n    echo \"GoogleService-Info.plist for flavor $flavor not found at $GOOGLESERVICE_FLAVOR.\"\n    exit 1\nfi\n\n\n# copy file\nDESTINATION=${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app\ncp \"${GOOGLESERVICE_FLAVOR}\" \"${DESTINATION}\"\n\n# \"${BUILD_PRODUCTS_DIR}/${PRODUCT_NAME}.app\"\n\n#\"${PROJECT_DIR}/Runner/GoogleService-Info.plist\"\n";
 		};
 		9740EEB61CF901F6004384FC /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
