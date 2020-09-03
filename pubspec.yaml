@@ -1,6 +1,5 @@
 name: freebox
-description: An app build using Flutter where the user can upload and search
-  Freebox locations.
+description: An app build using Flutter where the user can upload and search Freebox locations.
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -27,6 +26,7 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg
@@ -65,4 +65,3 @@ flappy_translator:
   depend_on_context: false
   use_single_quotes: true
   replace_no_break_spaces: false
-
