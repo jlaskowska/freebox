@@ -1,16 +1,27 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freebox/configs/app_config.dart';
+import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
+import 'package:freebox/modules/onboarding/widgets/onboarding_page_one.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      localizationsDelegates: [
+        const AppLocalizationsDelegate(),
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: AppLocalizationsDelegate.supportedLocals,
       navigatorObservers: [
         AnalyticsService.observer,
       ],
-      home: _HomeScreen(),
+      home: OnboardingPageOne(),
+      // home: _HomeScreen(),
     );
   }
 }

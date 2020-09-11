@@ -9,14 +9,19 @@ import 'package:flutter/material.dart';
 class AppLocalizations {
   static String get appTitle => _getText('appTitle');
 
+  static String get onboardingWelcomeHeadline =>
+      _getText('onboardingWelcomeHeadline');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
     'appTitle': 'My awesome application',
+    'onboardingWelcomeHeadline': 'Welcome to Freebox',
   };
 
   static Map<String, String> _deValues = {
     'appTitle': 'Meine tolle App',
+    'onboardingWelcomeHeadline': 'Welcome to Freebox',
   };
 
   static Map<String, Map<String, String>> _allValues = {
