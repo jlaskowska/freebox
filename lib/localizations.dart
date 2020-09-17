@@ -12,16 +12,23 @@ class AppLocalizations {
   static String get onboardingWelcomeHeadline =>
       _getText('onboardingWelcomeHeadline');
 
+  static String get onboardingPageOneDescription =>
+      _getText('onboardingPageOneDescription');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
     'appTitle': 'My awesome application',
     'onboardingWelcomeHeadline': 'Welcome to Freebox',
+    'onboardingPageOneDescription':
+        'In this app you can upload the content of your freebox for free and share it with others!',
   };
 
   static Map<String, String> _deValues = {
     'appTitle': 'Meine tolle App',
     'onboardingWelcomeHeadline': 'Welcome to Freebox',
+    'onboardingPageOneDescription':
+        '\'In this app you can upload the content of your freebox for free ans share it with others!\'',
   };
 
   static Map<String, Map<String, String>> _allValues = {
