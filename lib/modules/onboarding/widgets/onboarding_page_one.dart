@@ -11,6 +11,24 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
+  PageController pageController;
+  double pageOffset = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    pageController = PageController(viewportFraction: 0.9);
+    pageController.addListener(() {
+      setState(() => pageOffset = pageController.page);
+    });
+  }
+
+  @override
+  void dispose() {
+    pageController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,17 +36,21 @@ class _OnboardingState extends State<Onboarding> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             return PageView(
+              controller: pageController,
               children: [
                 OnboardingPage(
                   constraints: constraints,
                   assetPath: AssetPaths.onboardingImagePageOne,
                   headline: AppLocalizations.onboardingWelcomeHeadline,
                   description: AppLocalizations.onboardingPageOneDescription,
+                  offset: pageOffset,
                 ),
                 OnboardingPage(
-                    constraints: constraints,
-                    assetPath: AssetPaths.onboardingImagePageTwo,
-                    headline: AppLocalizations.onboardingWelcomeHeadline),
+                  constraints: constraints,
+                  assetPath: AssetPaths.onboardingImagePageTwo,
+                  headline: AppLocalizations.onboardingWelcomeHeadline,
+                  offset: pageOffset - 1,
+                ),
               ],
             );
           },
@@ -39,6 +61,7 @@ class _OnboardingState extends State<Onboarding> {
 }
 
 class OnboardingPage extends StatelessWidget {
+  final double offset;
   final BoxConstraints constraints;
   final String headline;
   final String description;
@@ -47,6 +70,7 @@ class OnboardingPage extends StatelessWidget {
     Key key,
     @required this.constraints,
     @required this.assetPath,
+    @required this.offset,
     this.headline,
     this.description,
   }) : super(key: key);
@@ -80,11 +104,12 @@ class OnboardingPage extends StatelessWidget {
           child: OnboardingCard(
             assetPath: assetPath,
             constraints: constraints,
+            offset: offset,
           ),
         ),
         Padding(
           padding: const EdgeInsets.symmetric(
-            vertical: 8.0,
+            vertical: 16.0,
             horizontal: 8,
           ),
           child: description != null
@@ -98,15 +123,12 @@ class OnboardingPage extends StatelessWidget {
                 )
               : Container(),
         ),
-        SizedBox(
-          height: 20,
-        ),
         Expanded(
           child: Align(
             alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 32.0),
-              child: Icon(MdiIcons.gestureSwipeHorizontal, size: 50),
+              padding: const EdgeInsets.only(bottom: 16.0),
+              child: AnimatedGestureIcon(),
             ),
           ),
         ),
@@ -118,10 +140,12 @@ class OnboardingPage extends StatelessWidget {
 class OnboardingCard extends StatelessWidget {
   final String assetPath;
   final BoxConstraints constraints;
+  final double offset;
   const OnboardingCard({
     Key key,
     @required this.assetPath,
     @required this.constraints,
+    @required this.offset,
   }) : super(key: key);
 
   @override
@@ -138,8 +162,49 @@ class OnboardingCard extends StatelessWidget {
           height: constraints.maxHeight * 0.4,
           width: constraints.maxWidth * 0.7,
           fit: BoxFit.cover,
+          alignment: Alignment(-offset.abs(), 1),
         ),
       ),
     );
+  }
+}
+
+class AnimatedGestureIcon extends StatefulWidget {
+  AnimatedGestureIcon({Key key}) : super(key: key);
+
+  @override
+  _AnimatedGestureIconState createState() => _AnimatedGestureIconState();
+}
+
+class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTickerProviderStateMixin {
+  AnimationController controller;
+  double currentValue = 0.0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    controller = AnimationController(vsync: this, duration: Duration(seconds: 2));
+    controller.forward();
+    controller.repeat();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    Animation animation = Tween<double>(begin: 0, end: 1).animate(controller);
+    return AnimatedBuilder(
+      animation: animation,
+      child: Icon(MdiIcons.gestureSwipeHorizontal, size: 50),
+      builder: (_, child) => Transform.translate(
+        offset: Offset(100 * animation.value, 0),
+        child: child,
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
   }
 }
