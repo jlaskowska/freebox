@@ -44,12 +44,15 @@ class _OnboardingState extends State<Onboarding> {
                   assetPath: AssetPaths.onboardingImagePageOne,
                   headline: AppLocalizations.onboardingWelcomeHeadline,
                   description: AppLocalizations.onboardingPageOneDescription,
+                  isPageTwo: false,
                   offset: pageOffset,
                 ),
                 OnboardingPage(
                   constraints: constraints,
                   assetPath: AssetPaths.onboardingImagePageTwo,
                   headline: AppLocalizations.onboardingWelcomeHeadline,
+                  description: AppLocalizations.onboardingPageTwoDescription,
+                  isPageTwo: true,
                   offset: pageOffset - 1,
                 ),
               ],
@@ -67,6 +70,7 @@ class OnboardingPage extends StatelessWidget {
   final String headline;
   final String description;
   final String assetPath;
+  final bool isPageTwo;
   const OnboardingPage({
     Key key,
     @required this.constraints,
@@ -74,6 +78,7 @@ class OnboardingPage extends StatelessWidget {
     @required this.offset,
     this.headline,
     this.description,
+    this.isPageTwo = false,
   }) : super(key: key);
 
   @override
@@ -128,12 +133,31 @@ class OnboardingPage extends StatelessWidget {
                 )
               : Container(),
         ),
-        Expanded(
-          child: Padding(
-            padding: const EdgeInsets.only(bottom: 16.0),
-            child: AnimatedGestureIcon(),
+        if (isPageTwo)
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0),
+            child: Center(
+              child: ButtonTheme(
+                minWidth: 200,
+                child: RaisedButton(
+                  onPressed: () {},
+                  color: AppColors.navyBlue,
+                  child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
+                      style: TextStyle(
+                        color: AppColors.white,
+                      )),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                ),
+              ),
+            ),
           ),
-        ),
+        if (!isPageTwo)
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(bottom: 20.0),
+              child: AnimatedGestureIcon(),
+            ),
+          ),
       ],
     );
   }
@@ -199,7 +223,7 @@ class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTi
       animation: animation,
       child: Icon(
         MdiIcons.gestureSwipeHorizontal,
-        size: 50,
+        size: 70,
         color: AppColors.blue,
       ),
       builder: (_, child) => Transform.translate(
