@@ -21,7 +21,7 @@ class AppLocalizations {
     'appTitle': 'My awesome application',
     'onboardingWelcomeHeadline': 'Welcome to Freebox',
     'onboardingPageOneDescription':
-        'In this app you can upload the content of your freebox for free and share it with others!',
+        'In this app you can upload the content of your freebox and share it with others!',
   };
 
   static Map<String, String> _deValues = {
