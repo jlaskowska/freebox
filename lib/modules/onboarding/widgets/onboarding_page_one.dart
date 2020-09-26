@@ -78,6 +78,7 @@ class OnboardingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(
@@ -124,12 +125,9 @@ class OnboardingPage extends StatelessWidget {
               : Container(),
         ),
         Expanded(
-          child: Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: const EdgeInsets.only(bottom: 16.0),
-              child: AnimatedGestureIcon(),
-            ),
+          child: Padding(
+            padding: const EdgeInsets.only(bottom: 16.0),
+            child: AnimatedGestureIcon(),
           ),
         ),
       ],
@@ -178,7 +176,8 @@ class AnimatedGestureIcon extends StatefulWidget {
 
 class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTickerProviderStateMixin {
   AnimationController controller;
-  double currentValue = 0.0;
+  double animationBegin = 0.5;
+  double animationEnd = 2;
 
   @override
   void initState() {
@@ -186,12 +185,12 @@ class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTi
 
     controller = AnimationController(vsync: this, duration: Duration(seconds: 2));
     controller.forward();
-    controller.repeat();
+    controller.repeat(reverse: true);
   }
 
   @override
   Widget build(BuildContext context) {
-    Animation animation = Tween<double>(begin: 0, end: 1).animate(controller);
+    Animation animation = Tween<double>(begin: animationBegin, end: animationEnd).animate(controller);
     return AnimatedBuilder(
       animation: animation,
       child: Icon(MdiIcons.gestureSwipeHorizontal, size: 50),
