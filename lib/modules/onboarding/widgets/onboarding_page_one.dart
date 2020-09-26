@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/configs/asset_paths.dart';
 import 'package:freebox/localizations.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -90,7 +91,7 @@ class OnboardingPage extends StatelessWidget {
                   headline,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppColors.blue,
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
                   ),
@@ -120,8 +121,9 @@ class OnboardingPage extends StatelessWidget {
                   description,
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: AppColors.black,
                     fontSize: 18,
+                    fontWeight: FontWeight.w500,
                   ),
                 )
               : Container(),
@@ -195,7 +197,11 @@ class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTi
     Animation animation = Tween<double>(begin: animationBegin, end: animationEnd).animate(controller);
     return AnimatedBuilder(
       animation: animation,
-      child: Icon(MdiIcons.gestureSwipeHorizontal, size: 50),
+      child: Icon(
+        MdiIcons.gestureSwipeHorizontal,
+        size: 50,
+        color: AppColors.blue,
+      ),
       builder: (_, child) => Transform.translate(
         offset: Offset(100 * animation.value, 0),
         child: child,
