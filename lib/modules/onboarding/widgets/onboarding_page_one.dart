@@ -102,10 +102,12 @@ class OnboardingPage extends StatelessWidget {
             vertical: 8.0,
             horizontal: 8,
           ),
-          child: OnboardingCard(
-            assetPath: assetPath,
-            constraints: constraints,
-            offset: offset,
+          child: Center(
+            child: OnboardingCard(
+              assetPath: assetPath,
+              constraints: constraints,
+              offset: offset,
+            ),
           ),
         ),
         Padding(
