@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/configs/asset_paths.dart';
 import 'package:freebox/localizations.dart';
+import 'package:freebox/widgets/main_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class Onboarding extends StatefulWidget {
@@ -140,7 +141,12 @@ class OnboardingPage extends StatelessWidget {
               child: ButtonTheme(
                 minWidth: 200,
                 child: RaisedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => MainScreen()),
+                    );
+                  },
                   color: AppColors.navyBlue,
                   child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
                       style: TextStyle(
