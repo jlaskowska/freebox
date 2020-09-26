@@ -18,6 +18,9 @@ class AppLocalizations {
   static String get onboardingPageTwoDescription =>
       _getText('onboardingPageTwoDescription');
 
+  static String get onboardingPageTwoButtonLabel =>
+      _getText('onboardingPageTwoButtonLabel');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
@@ -27,6 +30,7 @@ class AppLocalizations {
         'In this app you can upload the content of your freebox and share it with others.',
     'onboardingPageTwoDescription':
         'You can also search for freebox locations close to where you currently are.',
+    'onboardingPageTwoButtonLabel': 'Get Started!',
   };
 
   static Map<String, String> _deValues = {
@@ -36,6 +40,7 @@ class AppLocalizations {
         'In this app you can upload the content of your freebox for free ans share it with others.',
     'onboardingPageTwoDescription':
         'You can also search for freebox locations close to where you currently are. ',
+    'onboardingPageTwoButtonLabel': 'Los geht\'s!',
   };
 
   static Map<String, Map<String, String>> _allValues = {
