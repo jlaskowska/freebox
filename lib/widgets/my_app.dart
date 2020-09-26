@@ -3,7 +3,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freebox/configs/app_config.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
-import 'package:freebox/modules/onboarding/widgets/onboarding_page_one.dart';
+import 'package:freebox/modules/onboarding/widgets/onboarding.dart';
 import 'package:provider/provider.dart';
 
 class MyApp extends StatelessWidget {
@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       navigatorObservers: [
         AnalyticsService.observer,
       ],
-      home: OnboardingPageOne(),
+      home: Onboarding(),
       // home: _HomeScreen(),
     );
   }
