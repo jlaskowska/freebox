@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freebox/configs/app_colors.dart';
+import 'package:freebox/localizations.dart';
 import 'package:freebox/widgets/freebox_screen.dart';
 import 'package:freebox/widgets/map_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -26,14 +27,14 @@ class _MainScreenState extends State<MainScreen> {
           selectedIndex = index;
         }),
         showSelectedLabels: true,
-        items: const <BottomNavigationBarItem>[
+        items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               MdiIcons.packageVariantClosed,
               color: AppColors.blue,
             ),
             title: Text(
-              'Freeboxes',
+              AppLocalizations.bottomNavigationBarFreeboxes,
               style: TextStyle(
                 color: AppColors.blue,
               ),
@@ -45,7 +46,7 @@ class _MainScreenState extends State<MainScreen> {
               color: AppColors.blue,
             ),
             title: Text(
-              'Map',
+              AppLocalizations.bottomNavigationBarMap,
               style: TextStyle(
                 color: AppColors.blue,
               ),
