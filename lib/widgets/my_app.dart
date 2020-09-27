@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:freebox/configs/app_colors.dart';
-import 'package:freebox/configs/app_config.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
 import 'package:freebox/modules/onboarding/widgets/onboarding.dart';
-import 'package:provider/provider.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class MyApp extends StatelessWidget {
@@ -40,26 +38,6 @@ class MyApp extends StatelessWidget {
       ],
       home: Onboarding(),
       // home: _HomeScreen(),
-    );
-  }
-}
-
-class _HomeScreen extends StatelessWidget {
-  const _HomeScreen({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Freebox'),
-      ),
-      body: Center(
-        child: Text(
-          context.watch<AppConfig>().buildEnvironment.toString(),
-        ),
-      ),
     );
   }
 }
