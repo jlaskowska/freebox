@@ -14,21 +14,21 @@ class Onboarding extends StatefulWidget {
 }
 
 class _OnboardingState extends State<Onboarding> {
-  PageController pageController;
-  double pageOffset = 0;
+  PageController _pageController;
+  double _pageOffset = 0;
 
   @override
   void initState() {
     super.initState();
-    pageController = PageController(viewportFraction: 0.9);
-    pageController.addListener(() {
-      setState(() => pageOffset = pageController.page);
+    _pageController = PageController(viewportFraction: 0.9);
+    _pageController.addListener(() {
+      setState(() => _pageOffset = _pageController.page);
     });
   }
 
   @override
   void dispose() {
-    pageController.dispose();
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -39,7 +39,7 @@ class _OnboardingState extends State<Onboarding> {
         child: LayoutBuilder(
           builder: (context, constraints) {
             return PageView(
-              controller: pageController,
+              controller: _pageController,
               children: [
                 OnboardingPage(
                   constraints: constraints,
@@ -47,7 +47,7 @@ class _OnboardingState extends State<Onboarding> {
                   headline: AppLocalizations.onboardingWelcomeHeadline,
                   description: AppLocalizations.onboardingPageOneDescription,
                   isPageTwo: false,
-                  offset: pageOffset,
+                  offset: _pageOffset,
                 ),
                 OnboardingPage(
                   constraints: constraints,
@@ -55,7 +55,7 @@ class _OnboardingState extends State<Onboarding> {
                   headline: AppLocalizations.onboardingWelcomeHeadline,
                   description: AppLocalizations.onboardingPageTwoDescription,
                   isPageTwo: true,
-                  offset: pageOffset - 1,
+                  offset: _pageOffset - 1,
                 ),
               ],
             );
@@ -73,6 +73,7 @@ class OnboardingPage extends StatelessWidget {
   final String description;
   final String assetPath;
   final bool isPageTwo;
+
   const OnboardingPage({
     Key key,
     @required this.constraints,
@@ -167,6 +168,7 @@ class OnboardingCard extends StatelessWidget {
   final String assetPath;
   final BoxConstraints constraints;
   final double offset;
+
   const OnboardingCard({
     Key key,
     @required this.assetPath,
@@ -203,22 +205,29 @@ class AnimatedGestureIcon extends StatefulWidget {
 }
 
 class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTickerProviderStateMixin {
-  AnimationController controller;
-  double animationBegin = 0.5;
-  double animationEnd = 2;
+  static const _animationBegin = 0.5;
+  static const _animationEnd = 2.0;
+
+  AnimationController _controller;
 
   @override
   void initState() {
     super.initState();
 
-    controller = AnimationController(vsync: this, duration: Duration(seconds: 2));
-    controller.forward();
-    controller.repeat(reverse: true);
+    _controller = AnimationController(vsync: this, duration: const Duration(seconds: 2));
+    _controller.forward();
+    _controller.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    Animation animation = Tween<double>(begin: animationBegin, end: animationEnd).animate(controller);
+    Animation animation = Tween<double>(begin: _animationBegin, end: _animationEnd).animate(_controller);
     return AnimatedBuilder(
       animation: animation,
       child: Icon(
@@ -231,11 +240,5 @@ class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTi
         child: child,
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    controller.dispose();
-    super.dispose();
   }
 }
