@@ -96,11 +96,7 @@ class OnboardingPage extends StatelessWidget {
               ? Text(
                   headline,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.blue,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
+                  style: Theme.of(context).textTheme.headline1,
                 )
               : Container(),
         ),
@@ -126,11 +122,7 @@ class OnboardingPage extends StatelessWidget {
               ? Text(
                   description,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: AppColors.black,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: Theme.of(context).textTheme.bodyText1,
                 )
               : Container(),
         ),
@@ -230,7 +222,7 @@ class _AnimatedGestureIconState extends State<AnimatedGestureIcon> with SingleTi
       child: Icon(
         MdiIcons.gestureSwipeHorizontal,
         size: 70,
-        color: AppColors.blue,
+        color: Theme.of(context).accentColor,
       ),
       builder: (_, child) => Transform.translate(
         offset: Offset(100 * animation.value, 0),

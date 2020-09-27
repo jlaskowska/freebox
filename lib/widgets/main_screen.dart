@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/widgets/freebox_screen.dart';
 import 'package:freebox/widgets/map_screen.dart';
@@ -31,24 +30,24 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(
             icon: Icon(
               MdiIcons.packageVariantClosed,
-              color: AppColors.blue,
+              color: Theme.of(context).accentColor,
             ),
             title: Text(
               AppLocalizations.bottomNavigationBarFreeboxes,
               style: TextStyle(
-                color: AppColors.blue,
+                color: Theme.of(context).accentColor,
               ),
             ),
           ),
           BottomNavigationBarItem(
             icon: Icon(
               MdiIcons.mapSearchOutline,
-              color: AppColors.blue,
+              color: Theme.of(context).accentColor,
             ),
             title: Text(
               AppLocalizations.bottomNavigationBarMap,
               style: TextStyle(
-                color: AppColors.blue,
+                color: Theme.of(context).accentColor,
               ),
             ),
           ),
