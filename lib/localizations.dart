@@ -9,14 +9,48 @@ import 'package:flutter/material.dart';
 class AppLocalizations {
   static String get appTitle => _getText('appTitle');
 
+  static String get onboardingWelcomeHeadline =>
+      _getText('onboardingWelcomeHeadline');
+
+  static String get onboardingPageOneDescription =>
+      _getText('onboardingPageOneDescription');
+
+  static String get onboardingPageTwoDescription =>
+      _getText('onboardingPageTwoDescription');
+
+  static String get onboardingPageTwoButtonLabel =>
+      _getText('onboardingPageTwoButtonLabel');
+
+  static String get bottomNavigationBarFreeboxes =>
+      _getText('bottomNavigationBarFreeboxes');
+
+  static String get bottomNavigationBarMap =>
+      _getText('bottomNavigationBarMap');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
     'appTitle': 'My awesome application',
+    'onboardingWelcomeHeadline': 'Welcome to Freebox',
+    'onboardingPageOneDescription':
+        'In this app you can upload the content of your freebox and share it with others.',
+    'onboardingPageTwoDescription':
+        'You can also search for freebox locations close to where you currently are.',
+    'onboardingPageTwoButtonLabel': 'Get Started!',
+    'bottomNavigationBarFreeboxes': 'Freeboxes',
+    'bottomNavigationBarMap': 'Map',
   };
 
   static Map<String, String> _deValues = {
     'appTitle': 'Meine tolle App',
+    'onboardingWelcomeHeadline': 'Welcome to Freebox',
+    'onboardingPageOneDescription':
+        'In this app you can upload the content of your freebox for free ans share it with others.',
+    'onboardingPageTwoDescription':
+        'You can also search for freebox locations close to where you currently are. ',
+    'onboardingPageTwoButtonLabel': 'Los geht\'s!',
+    'bottomNavigationBarFreeboxes': 'Freeboxes',
+    'bottomNavigationBarMap': 'Karte',
   };
 
   static Map<String, Map<String, String>> _allValues = {

@@ -12,4 +12,6 @@ abstract class AnalyticsService {
 
   static Future<void> trackEvent(BaseAnalyticsEvent event) async =>
       await _analytics.logEvent(name: event.name, parameters: event.parameters);
+
+  static Future<void> userseenOnboarding() async => await _analytics.logTutorialComplete();
 }

@@ -1,2 +1,8 @@
 keys;en;de
 appTitle;My awesome application;Meine tolle App
+onboardingWelcomeHeadline;Welcome to Freebox;Welcome to Freebox
+onboardingPageOneDescription;In this app you can upload the content of your freebox and share it with others.;In this app you can upload the content of your freebox for free ans share it with others.
+onboardingPageTwoDescription;You can also search for freebox locations close to where you currently are.;You can also search for freebox locations close to where you currently are.
+onboardingPageTwoButtonLabel;Get Started!;Los geht's!
+bottomNavigationBarFreeboxes;Freeboxes;Freeboxes
+bottomNavigationBarMap;Map;Karte
