@@ -19,6 +19,8 @@ dependencies:
   firebase_analytics: ^6.0.0
   material_design_icons_flutter: ^4.0.5555
   google_fonts: ^1.1.0
+  hive: ^1.4.4
+  path_provider: ^1.6.18
 
 dev_dependencies:
   flutter_test:
