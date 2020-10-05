@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/configs/asset_paths.dart';
+import 'package:freebox/configs/route_names.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
+import 'package:freebox/modules/user_settings/i_settingsdatabase.dart';
 import 'package:freebox/widgets/main_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:provider/provider.dart';
 
 class Onboarding extends StatefulWidget {
   Onboarding({Key key}) : super(key: key);
@@ -137,10 +140,11 @@ class OnboardingPage extends StatelessWidget {
                 child: RaisedButton(
                   onPressed: () {
                     AnalyticsService.userseenOnboarding();
-                    Navigator.push(
+                    Provider.of<ISettingsDatabase>(
                       context,
-                      MaterialPageRoute(builder: (context) => MainScreen()),
-                    );
+                      listen: false,
+                    ).userSeenOnboarding = true;
+                    Navigator.pushNamed(context, RouteNames.mainScreen);
                   },
                   color: AppColors.navyBlue,
                   child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
