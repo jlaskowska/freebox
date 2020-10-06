@@ -5,7 +5,6 @@ import 'package:freebox/configs/route_names.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
 import 'package:freebox/modules/user_settings/i_settingsdatabase.dart';
-import 'package:freebox/widgets/main_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
