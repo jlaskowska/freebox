@@ -136,7 +136,7 @@ class OnboardingPage extends StatelessWidget {
             child: Center(
               child: ButtonTheme(
                 minWidth: 200,
-                child: RaisedButton(
+                child: ElevatedButton(
                   onPressed: () {
                     AnalyticsService.userseenOnboarding();
                     Provider.of<ISettingsDatabase>(
@@ -145,12 +145,18 @@ class OnboardingPage extends StatelessWidget {
                     ).userSeenOnboarding = true;
                     Navigator.pushNamed(context, RouteNames.mainScreen);
                   },
-                  color: AppColors.navyBlue,
+                  style: ButtonStyle(
+                    shape: MaterialStateProperty.resolveWith(
+                      (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+                    ),
+                    backgroundColor: MaterialStateProperty.resolveWith(
+                      (states) => AppColors.navyBlue,
+                    ),
+                  ),
                   child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
                       style: TextStyle(
                         color: AppColors.white,
                       )),
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                 ),
               ),
             ),
