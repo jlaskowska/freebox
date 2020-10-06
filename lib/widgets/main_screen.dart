@@ -21,6 +21,8 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
+        selectedItemColor: Theme.of(context).accentColor,
+        unselectedItemColor: Theme.of(context).accentColor,
         currentIndex: selectedIndex,
         onTap: (index) => setState(() {
           selectedIndex = index;
@@ -32,24 +34,14 @@ class _MainScreenState extends State<MainScreen> {
               MdiIcons.packageVariantClosed,
               color: Theme.of(context).accentColor,
             ),
-            title: Text(
-              AppLocalizations.bottomNavigationBarFreeboxes,
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-              ),
-            ),
+            label: AppLocalizations.bottomNavigationBarFreeboxes,
           ),
           BottomNavigationBarItem(
             icon: Icon(
               MdiIcons.mapSearchOutline,
               color: Theme.of(context).accentColor,
             ),
-            title: Text(
-              AppLocalizations.bottomNavigationBarMap,
-              style: TextStyle(
-                color: Theme.of(context).accentColor,
-              ),
-            ),
+            label: AppLocalizations.bottomNavigationBarMap,
           ),
         ],
       ),
