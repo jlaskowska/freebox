@@ -123,10 +123,13 @@ class OnboardingPage extends StatelessWidget {
             horizontal: 8,
           ),
           child: description != null
-              ? Text(
-                  description,
-                  textAlign: TextAlign.center,
-                  style: Theme.of(context).textTheme.bodyText1,
+              ? Container(
+                  width: constraints.maxWidth * 0.8,
+                  child: Text(
+                    description,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
                 )
               : Container(),
         ),
@@ -139,10 +142,7 @@ class OnboardingPage extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     AnalyticsService.userseenOnboarding();
-                    Provider.of<ISettingsDatabase>(
-                      context,
-                      listen: false,
-                    ).userSeenOnboarding = true;
+                    context.read<ISettingsDatabase>().userSeenOnboarding = true;
                     Navigator.pushNamed(context, RouteNames.mainScreen);
                   },
                   style: ButtonStyle(
