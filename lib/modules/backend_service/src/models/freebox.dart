@@ -1,26 +1,30 @@
 import 'package:flutter/foundation.dart';
 
 class Freebox {
-  final String image;
+  final String id;
   final String description;
   final String address;
+  final String imageUrl;
 
   Freebox({
-    @required this.address,
+    @required this.id,
     @required this.description,
-    @required this.image,
+    @required this.address,
+    @required this.imageUrl,
   });
 
   factory Freebox.fromJson(Map<String, dynamic> json) => Freebox(
-        image: json['image'],
+        id: json['id'],
         description: json['description'],
         address: json['address'],
+        imageUrl: json['imageUrl'],
       );
 
   Map<String, dynamic> toJson() => {
-        'image': image,
+        'id': id,
         'description': description,
         'address': address,
+        'imageUrl': imageUrl,
       };
 
   @override
