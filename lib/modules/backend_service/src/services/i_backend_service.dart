@@ -5,9 +5,9 @@ import 'package:meta/meta.dart';
 import '../models/freebox.dart';
 
 abstract class IBackendService {
-  Stream<List<Freebox>> freeboxStream();
+  Future<void> initialize();
 
-  Future<void> initializeBackend();
+  Stream<List<Freebox>> freeboxStream();
 
   Future<bool> publishFreebox({
     @required File image,

@@ -34,8 +34,8 @@ class _MyAppState extends State<MyApp> {
   Future<void> _initializeApp() async {
     final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
-    await _settingsDatabase.init();
-    await _backendService.initializeBackend();
+    await _settingsDatabase.initialize();
+    await _backendService.initialize();
   }
 
   @override
