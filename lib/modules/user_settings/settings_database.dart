@@ -8,12 +8,13 @@ class SettingsDatabase extends ISettingsDatabase {
   Box<dynamic> _box;
 
   @override
-  Future<void> init() async {
+  Future<void> initialize() async {
     _box = await Hive.openBox(_boxName);
   }
 
   @override
   set userSeenOnboarding(value) => _box.put(_Keys.userSeenOnboarding, value);
+
   @override
   bool get userSeenOnboarding => _box.get(_Keys.userSeenOnboarding, defaultValue: _Defaults.userSeenOnboarding);
 }
