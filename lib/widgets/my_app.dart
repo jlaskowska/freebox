@@ -4,6 +4,7 @@ import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/configs/route_names.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
+import 'package:freebox/modules/backend_service/bacend_service.dart';
 import 'package:freebox/modules/onboarding/widgets/onboarding.dart';
 import 'package:freebox/modules/user_settings/i_settingsdatabase.dart';
 import 'package:freebox/modules/user_settings/settings_database.dart';
@@ -22,6 +23,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Future<void> _initializeAppFuture;
   final ISettingsDatabase _settingsDatabase = SettingsDatabase();
+  final IBackendService _backendService = BackendService();
 
   @override
   void initState() {
@@ -33,6 +35,7 @@ class _MyAppState extends State<MyApp> {
     final appDocumentDir = await path_provider.getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
     await _settingsDatabase.init();
+    await _backendService.initializeBackend();
   }
 
   @override
@@ -53,6 +56,9 @@ class _MyAppState extends State<MyApp> {
                     providers: [
                       Provider<ISettingsDatabase>.value(
                         value: _settingsDatabase,
+                      ),
+                      Provider<IBackendService>.value(
+                        value: _backendService,
                       ),
                     ],
                     child: _MyApp(
