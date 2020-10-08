@@ -9,19 +9,20 @@ class FreeboxScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-        stream: context.watch<IBackendService>().freeboxStream(),
-        builder: (context, AsyncSnapshot<List<Freebox>> snapshot) {
-          print(snapshot.connectionState);
-          if (snapshot.data != null) {
-            return ListView.builder(
-              itemBuilder: (context, index) => ListTile(
-                title: Text(snapshot.data[index].description),
-              ),
-              itemCount: snapshot.data.length,
-            );
-          } else {
-            return Container();
-          }
-        });
+      stream: context.watch<IBackendService>().freeboxStream(),
+      builder: (context, AsyncSnapshot<List<Freebox>> snapshot) {
+        if (snapshot.data != null) {
+          return ListView.builder(
+            itemBuilder: (context, index) => ListTile(
+              leading: Image.network(snapshot.data[index].imageUrl),
+              title: Text(snapshot.data[index].description),
+            ),
+            itemCount: snapshot.data.length,
+          );
+        } else {
+          return Container();
+        }
+      },
+    );
   }
 }
