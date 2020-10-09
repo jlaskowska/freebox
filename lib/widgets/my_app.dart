@@ -4,7 +4,6 @@ import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/configs/route_names.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
-import 'package:freebox/modules/authentification/authtentification.dart';
 import 'package:freebox/modules/backend_service/bacend_service.dart';
 import 'package:freebox/modules/onboarding/widgets/onboarding.dart';
 import 'package:freebox/modules/user_settings/user_settings.dart';
@@ -60,9 +59,6 @@ class _MyAppState extends State<MyApp> {
                       Provider<IBackendService>.value(
                         value: _backendService,
                       ),
-                      Provider<IAuthService>(
-                        create: (_) => AuthService(),
-                      ),
                     ],
                     child: _MyApp(
                       hasSeenOnboarding: _settingsDatabase.userSeenOnboarding,
@@ -100,6 +96,11 @@ class _MyApp extends StatelessWidget {
             color: AppColors.blue,
             fontSize: 18,
             fontWeight: FontWeight.w500,
+          ),
+        ),
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ButtonStyle(
+            minimumSize: MaterialStateProperty.all(Size(200, 40)),
           ),
         ),
       ),
