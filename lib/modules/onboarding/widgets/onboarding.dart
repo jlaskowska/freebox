@@ -94,7 +94,7 @@ class OnboardingPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 8.0,
-            horizontal: 8,
+            horizontal: 16,
           ),
           child: headline != null
               ? Text(
@@ -120,7 +120,7 @@ class OnboardingPage extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(
             vertical: 16.0,
-            horizontal: 8,
+            horizontal: 16,
           ),
           child: description != null
               ? Container(
@@ -137,27 +137,24 @@ class OnboardingPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: Center(
-              child: ButtonTheme(
-                minWidth: 200,
-                child: ElevatedButton(
-                  onPressed: () {
-                    AnalyticsService.userseenOnboarding();
-                    context.read<ISettingsDatabase>().userSeenOnboarding = true;
-                    Navigator.pushNamed(context, RouteNames.mainScreen);
-                  },
-                  style: ButtonStyle(
-                    shape: MaterialStateProperty.resolveWith(
-                      (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
-                    ),
-                    backgroundColor: MaterialStateProperty.resolveWith(
-                      (states) => Theme.of(context).accentColor,
-                    ),
+              child: ElevatedButton(
+                onPressed: () {
+                  AnalyticsService.userseenOnboarding();
+                  context.read<ISettingsDatabase>().userSeenOnboarding = true;
+                  Navigator.pushNamed(context, RouteNames.mainScreen);
+                },
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.resolveWith(
+                    (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                   ),
-                  child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
-                      style: TextStyle(
-                        color: AppColors.white,
-                      )),
+                  backgroundColor: MaterialStateProperty.resolveWith(
+                    (states) => Theme.of(context).accentColor,
+                  ),
                 ),
+                child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
+                    style: TextStyle(
+                      color: AppColors.white,
+                    )),
               ),
             ),
           ),
