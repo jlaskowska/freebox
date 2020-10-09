@@ -6,8 +6,7 @@ import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
 import 'package:freebox/modules/backend_service/bacend_service.dart';
 import 'package:freebox/modules/onboarding/widgets/onboarding.dart';
-import 'package:freebox/modules/user_settings/i_settingsdatabase.dart';
-import 'package:freebox/modules/user_settings/settings_database.dart';
+import 'package:freebox/modules/user_settings/user_settings.dart';
 import 'package:freebox/widgets/custom_circular_progress_indicator.dart';
 import 'package:freebox/widgets/main_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -84,19 +83,20 @@ class _MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
-        accentColor: AppColors.blue,
+        accentColor: AppColors.green,
         fontFamily: GoogleFonts.poppins().fontFamily,
         textTheme: TextTheme(
-            headline1: TextStyle(
-              color: AppColors.blue,
-              fontSize: 30,
-              fontWeight: FontWeight.bold,
-            ),
-            bodyText1: TextStyle(
-              color: AppColors.navyBlue,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            )),
+          headline1: TextStyle(
+            color: AppColors.green,
+            fontSize: 30,
+            fontWeight: FontWeight.bold,
+          ),
+          bodyText1: TextStyle(
+            color: AppColors.blue,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       localizationsDelegates: [
         const AppLocalizationsDelegate(),

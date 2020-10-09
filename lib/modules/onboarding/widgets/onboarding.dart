@@ -4,7 +4,7 @@ import 'package:freebox/configs/asset_paths.dart';
 import 'package:freebox/configs/route_names.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/modules/analytics/analytics.dart';
-import 'package:freebox/modules/user_settings/i_settingsdatabase.dart';
+import 'package:freebox/modules/user_settings/user_settings.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 
@@ -150,7 +150,7 @@ class OnboardingPage extends StatelessWidget {
                       (states) => RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
                     ),
                     backgroundColor: MaterialStateProperty.resolveWith(
-                      (states) => AppColors.navyBlue,
+                      (states) => Theme.of(context).accentColor,
                     ),
                   ),
                   child: Text(AppLocalizations.onboardingPageTwoButtonLabel,
