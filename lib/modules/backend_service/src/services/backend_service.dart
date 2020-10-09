@@ -1,20 +1,33 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
 import 'package:uuid/uuid.dart';
 
 import '../models/freebox.dart';
+import 'i_auth_service.dart';
 import 'i_backend_service.dart';
 
-class BackendService implements IBackendService {
+class BackendService implements IBackendService, IAuthService {
   static const _freeboxCollectionPath = 'freeboxes';
 
   @override
   Future<void> initialize() async {
     await Firebase.initializeApp();
+    await signInAnonymously();
+  }
+
+  @override
+  Future<void> signInAnonymously() async {
+    try {
+      await FirebaseAuth.instance.signInAnonymously();
+    } on PlatformException catch (e) {
+      print(e);
+    }
   }
 
   @override

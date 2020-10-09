@@ -1,6 +1,6 @@
 import 'package:hive/hive.dart';
 
-import 'i_settingsdatabase.dart';
+import 'i_settings_database.dart';
 
 class SettingsDatabase extends ISettingsDatabase {
   static const _boxName = 'settings';
