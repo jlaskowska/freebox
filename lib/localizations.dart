@@ -27,6 +27,9 @@ class AppLocalizations {
   static String get bottomNavigationBarMap =>
       _getText('bottomNavigationBarMap');
 
+  static String get addFreeboxSheetUploadFreeboxButtonLabel =>
+      _getText('addFreeboxSheetUploadFreeboxButtonLabel');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
@@ -39,6 +42,7 @@ class AppLocalizations {
     'onboardingPageTwoButtonLabel': 'Get Started!',
     'bottomNavigationBarFreeboxes': 'Freeboxes',
     'bottomNavigationBarMap': 'Map',
+    'addFreeboxSheetUploadFreeboxButtonLabel': 'Upload Freebox',
   };
 
   static Map<String, String> _deValues = {
@@ -47,10 +51,11 @@ class AppLocalizations {
     'onboardingPageOneDescription':
         'In this app you can upload the content of your freebox for free ans share it with others.',
     'onboardingPageTwoDescription':
-        'You can also search for freebox locations close to where you currently are. ',
+        'You can also search for freebox locations close to where you currently are.',
     'onboardingPageTwoButtonLabel': 'Los geht\'s!',
     'bottomNavigationBarFreeboxes': 'Freeboxes',
     'bottomNavigationBarMap': 'Karte',
+    'addFreeboxSheetUploadFreeboxButtonLabel': 'Freebox hochladen',
   };
 
   static Map<String, Map<String, String>> _allValues = {
