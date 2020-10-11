@@ -83,6 +83,9 @@ class _MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData(
+        iconTheme: IconThemeData(
+          color: AppColors.white,
+        ),
         accentColor: AppColors.green,
         primaryColor: AppColors.blue,
         fontFamily: GoogleFonts.poppins().fontFamily,
@@ -100,6 +103,7 @@ class _MyApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(AppColors.green),
             minimumSize: MaterialStateProperty.all(Size(200, 40)),
           ),
         ),
