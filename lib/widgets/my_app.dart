@@ -86,6 +86,9 @@ class _MyApp extends StatelessWidget {
         iconTheme: IconThemeData(
           color: AppColors.white,
         ),
+        floatingActionButtonTheme: FloatingActionButtonThemeData(
+          foregroundColor: AppColors.green,
+        ),
         accentColor: AppColors.green,
         primaryColor: AppColors.blue,
         fontFamily: GoogleFonts.poppins().fontFamily,
@@ -99,6 +102,11 @@ class _MyApp extends StatelessWidget {
             color: AppColors.blue,
             fontSize: 18,
             fontWeight: FontWeight.w500,
+          ),
+        ),
+        textButtonTheme: TextButtonThemeData(
+          style: ButtonStyle(
+            foregroundColor: MaterialStateProperty.all(AppColors.green),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
