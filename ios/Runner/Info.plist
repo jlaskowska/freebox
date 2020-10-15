@@ -43,5 +43,9 @@
 	<string>$(DISPLAY_NAME)</string>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To upload images from photo libray</string>
+	<key>NSCameraUsageDescription</key>
+	<string>To upload images from camera</string>
 </dict>
 </plist>
