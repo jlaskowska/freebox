@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:freebox/localizations.dart';
-import 'package:freebox/widgets/add_freebox_sheet.dart';
+import 'package:freebox/widgets/add_freebox_sheet/widgets/add_freebox_sheet.dart';
 import 'package:freebox/widgets/freebox_screen.dart';
 import 'package:freebox/widgets/map_screen.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -27,7 +27,7 @@ class _MainScreenState extends State<MainScreen> {
         onPressed: () {
           showModalBottomSheet(
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(topLeft: Radius.circular(30), topRight: Radius.circular(30)),
+              borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
             ),
             context: context,
             builder: (_) => AddFreeboxSheet(),
