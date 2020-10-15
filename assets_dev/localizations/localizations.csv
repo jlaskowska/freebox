@@ -7,3 +7,6 @@ onboardingPageTwoButtonLabel;Get Started!;Los geht's!
 bottomNavigationBarFreeboxes;Freeboxes;Freeboxes
 bottomNavigationBarMap;Map;Karte
 addFreeboxSheetUploadFreeboxButtonLabel;Upload Freebox;Freebox hochladen
+addFreeboxSheetUploadImageButtonLabel;Upload image;Bild hochladen
+addFreeboxSheetUpTextFieldDescription;Description;Beschreibung
+addFreeboxSheetUpTextFieldAdress;Address;Adresse

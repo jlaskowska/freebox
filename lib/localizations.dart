@@ -30,6 +30,15 @@ class AppLocalizations {
   static String get addFreeboxSheetUploadFreeboxButtonLabel =>
       _getText('addFreeboxSheetUploadFreeboxButtonLabel');
 
+  static String get addFreeboxSheetUploadImageButtonLabel =>
+      _getText('addFreeboxSheetUploadImageButtonLabel');
+
+  static String get addFreeboxSheetUpTextFieldDescription =>
+      _getText('addFreeboxSheetUpTextFieldDescription');
+
+  static String get addFreeboxSheetUpTextFieldAdress =>
+      _getText('addFreeboxSheetUpTextFieldAdress');
+
   static Map<String, String> _localizedValues;
 
   static Map<String, String> _enValues = {
@@ -43,6 +52,9 @@ class AppLocalizations {
     'bottomNavigationBarFreeboxes': 'Freeboxes',
     'bottomNavigationBarMap': 'Map',
     'addFreeboxSheetUploadFreeboxButtonLabel': 'Upload Freebox',
+    'addFreeboxSheetUploadImageButtonLabel': 'Upload image',
+    'addFreeboxSheetUpTextFieldDescription': 'Description',
+    'addFreeboxSheetUpTextFieldAdress': 'Address',
   };
 
   static Map<String, String> _deValues = {
@@ -56,6 +68,9 @@ class AppLocalizations {
     'bottomNavigationBarFreeboxes': 'Freeboxes',
     'bottomNavigationBarMap': 'Karte',
     'addFreeboxSheetUploadFreeboxButtonLabel': 'Freebox hochladen',
+    'addFreeboxSheetUploadImageButtonLabel': 'Bild hochladen',
+    'addFreeboxSheetUpTextFieldDescription': 'Beschreibung',
+    'addFreeboxSheetUpTextFieldAdress': 'Adresse',
   };
 
   static Map<String, Map<String, String>> _allValues = {
