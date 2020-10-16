@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/localizations.dart';
 import 'package:freebox/widgets/add_freebox_sheet/cubit/freebox_image_picker_cubit.dart';
 import 'package:freebox/widgets/custom_circular_progress_indicator.dart';
@@ -27,6 +28,7 @@ class _AddFreeboxSheetState extends State<AddFreeboxSheet> {
                 return FreeboxImagePicker(
                   onPressed: () async => await _cubit.getImage(),
                   opacity: 0.4,
+                  isImageLoaded: false,
                   child: Icon(
                     MdiIcons.cloudUploadOutline,
                   ),
@@ -34,6 +36,7 @@ class _AddFreeboxSheetState extends State<AddFreeboxSheet> {
               } else if (state is FreeboxImagePickerLoaded) {
                 return FreeboxImagePicker(
                   onPressed: () async => await _cubit.getImage(),
+                  isImageLoaded: true,
                   opacity: 1,
                   child: Image.file(
                     _cubit.image,
@@ -85,12 +88,14 @@ class _AddFreeboxSheetState extends State<AddFreeboxSheet> {
 class FreeboxImagePicker extends StatefulWidget {
   final double opacity;
   final Widget child;
+  final bool isImageLoaded;
   final void Function() onPressed;
   FreeboxImagePicker({
     Key key,
     @required this.child,
     this.onPressed,
     this.opacity,
+    this.isImageLoaded,
   }) : super(key: key);
 
   @override
@@ -111,7 +116,7 @@ class _FreeboxImagePickerState extends State<FreeboxImagePicker> {
               vertical: 8,
             ),
             child: Container(
-              color: Theme.of(context).primaryColor,
+              color: widget.isImageLoaded ? AppColors.white : Theme.of(context).primaryColor,
               height: 150,
               width: 150,
               child: widget.child,
