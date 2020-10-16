@@ -107,6 +107,9 @@ class _MyApp extends StatelessWidget {
         textButtonTheme: TextButtonThemeData(
           style: ButtonStyle(
             foregroundColor: MaterialStateProperty.all(AppColors.green),
+            overlayColor: MaterialStateProperty.all(
+              AppColors.lightGreen.withOpacity(0.4),
+            ),
           ),
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
