@@ -14,7 +14,8 @@ class FreeboxImagePickerCubit extends Cubit<FreeboxImagePickerState> {
   Future<void> getImage() async {
     try {
       final pickedFile = await _imagePicker.getImage(
-        source: ImageSource.gallery,
+        imageQuality: 50,
+        source: ImageSource.camera,
       );
       image = File(pickedFile.path);
       emit(FreeboxImagePickerLoaded(image));
