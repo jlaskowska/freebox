@@ -26,11 +26,18 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+            //You can control the height of modal bottom sheet effectively with FractionallySizedBox combined with isScrollControlled: true
+            isScrollControlled: true,
+
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
             ),
             context: context,
-            builder: (_) => AddFreeboxSheet(),
+
+            builder: (_) => FractionallySizedBox(
+              heightFactor: 0.8,
+              child: AddFreeboxSheet(),
+            ),
           );
         },
         child: Icon(
