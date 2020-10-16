@@ -1,10 +1,16 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freebox/configs/app_colors.dart';
 import 'package:freebox/localizations.dart';
+import 'package:freebox/modules/backend_service/bacend_service.dart';
 import 'package:freebox/widgets/add_freebox_sheet/cubit/image_picker_cubit.dart';
 import 'package:freebox/widgets/add_freebox_sheet/cubit/image_picker_repository.dart';
 import 'package:freebox/widgets/add_freebox_sheet/cubit/image_picker_respository_impl.dart';
+import 'package:freebox/widgets/add_freebox_sheet/cubit/upload_freebox_cubit.dart';
+import 'package:freebox/widgets/common/modal_progress_indicator.dart';
 import 'package:freebox/widgets/custom_circular_progress_indicator.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -41,8 +47,15 @@ class _AddFreeboxSheetState extends State<AddFreeboxSheet> {
   Widget build(BuildContext context) {
     return RepositoryProvider<ImagePickerRepository>(
       create: (context) => ImagePickerRepositoryImpl(),
-      child: BlocProvider<ImagePickerCubit>(
-        create: (context) => ImagePickerCubit(context.repository<ImagePickerRepository>()),
+      child: MultiBlocProvider(
+        providers: [
+          BlocProvider<ImagePickerCubit>(
+            create: (context) => ImagePickerCubit(context.repository<ImagePickerRepository>()),
+          ),
+          BlocProvider<UploadFreeboxCubit>(
+            create: (context) => UploadFreeboxCubit(context.repository<IBackendService>()),
+          ),
+        ],
         child: ListView(
           children: [
             Padding(
@@ -74,45 +87,91 @@ class _AddFreeboxSheetState extends State<AddFreeboxSheet> {
                 },
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: TextField(
-                focusNode: _focusNode1,
-                onSubmitted: (String value) => FocusScope.of(context).requestFocus(_focusNode2),
-                controller: _descriptionController,
-                decoration: InputDecoration(
-                  labelText: AppLocalizations.addFreeboxSheetUpTextFieldDescription,
-                ),
-                maxLines: 2,
-                keyboardType: TextInputType.text,
-                cursorColor: Theme.of(context).primaryColor,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 8.0),
-              child: TextField(
-                focusNode: _focusNode2,
-                controller: _adressController,
-                decoration: InputDecoration(labelText: AppLocalizations.addFreeboxSheetUpTextFieldAdress),
-                keyboardType: TextInputType.streetAddress,
-                cursorColor: Theme.of(context).primaryColor,
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 16.0,
-                vertical: 16,
-              ),
-              child: ElevatedButton(
-                onPressed: () {},
-                child: Text(
-                  AppLocalizations.addFreeboxSheetUploadFreeboxButtonLabel,
-                ),
-              ),
+            BlocBuilder<UploadFreeboxCubit, UploadFreeboxState>(
+              builder: (context, state) {
+                if (state is UploadFreeboxInitial) {
+                  return TextFieldsColumn(
+                    userHasPickedImage: context.bloc<ImagePickerCubit>().image != null,
+                    descriptionController: _descriptionController,
+                    adressController: _adressController,
+                    onPressed: () async => await context.bloc<UploadFreeboxCubit>().uploadFreebox(
+                        context.bloc<ImagePickerCubit>().image,
+                        _descriptionController.value.text,
+                        _adressController.value.text),
+                  );
+                } else if (state is UploadFreeboxUploading) {
+                  scheduleMicrotask(() => ModalProgressIndicator.show(context));
+                } else if (state is UploadFreeboxUploaded) {
+                  ModalProgressIndicator.dismiss();
+                  scheduleMicrotask(() => Navigator.of(context).pop());
+                }
+                return Container();
+              },
             ),
           ],
         ),
       ),
+    );
+  }
+}
+
+class TextFieldsColumn extends StatelessWidget {
+  final bool userHasPickedImage;
+  final void Function() onPressed;
+
+  const TextFieldsColumn({
+    Key key,
+    @required TextEditingController descriptionController,
+    @required TextEditingController adressController,
+    @required this.userHasPickedImage,
+    @required this.onPressed,
+  })  : _descriptionController = descriptionController,
+        _addressController = adressController,
+        super(key: key);
+
+  final TextEditingController _descriptionController;
+  final TextEditingController _addressController;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextField(
+            controller: _descriptionController,
+            decoration: InputDecoration(
+              labelText: AppLocalizations.addFreeboxSheetUpTextFieldDescription,
+            ),
+            maxLines: 2,
+            keyboardType: TextInputType.text,
+            cursorColor: Theme.of(context).primaryColor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: TextField(
+            controller: _addressController,
+            decoration: InputDecoration(labelText: AppLocalizations.addFreeboxSheetUpTextFieldAdress),
+            keyboardType: TextInputType.streetAddress,
+            cursorColor: Theme.of(context).primaryColor,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
+            vertical: 16,
+          ),
+          child: ElevatedButton(
+            onPressed: _addressController.value != null && _descriptionController != null && userHasPickedImage
+                ? () async => await onPressed()
+                : null,
+            child: Text(
+              AppLocalizations.addFreeboxSheetUploadFreeboxButtonLabel,
+            ),
+          ),
+        ),
+      ],
     );
   }
 }

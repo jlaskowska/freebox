@@ -35,7 +35,7 @@ class _MainScreenState extends State<MainScreen> {
             context: context,
 
             builder: (_) => FractionallySizedBox(
-              heightFactor: 0.8,
+              heightFactor: MediaQuery.of(context).size.height < 650 ? 0.8 : 0.65,
               child: AddFreeboxSheet(),
             ),
           );

@@ -10,10 +10,11 @@ class ImagePickerCubit extends Cubit<ImagePickerState> {
   final ImagePickerRepository _imagePickerRepository;
 
   ImagePickerCubit(this._imagePickerRepository) : super(ImagePickerInitial());
-
+  var image;
   Future<void> getImage() async {
     await _imagePickerRepository.getImage();
     if (_imagePickerRepository.hasUserPickedImage) {
+      image = _imagePickerRepository.pickedImage;
       emit(ImagePickerLoaded(_imagePickerRepository.pickedImage));
     }
   }

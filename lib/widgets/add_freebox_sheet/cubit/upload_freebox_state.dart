@@ -14,5 +14,5 @@ class UploadFreeboxUploading extends UploadFreeboxState {
 }
 
 class UploadFreeboxUploaded extends UploadFreeboxState {
-  const UploadFreeboxUploaded(String address, String description);
+  const UploadFreeboxUploaded();
 }
